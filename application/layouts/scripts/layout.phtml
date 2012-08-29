@@ -1,0 +1,65 @@
+<?php
+    $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+    $this->headTitle()->setSeparator(' | ');
+    $this->headTitle('Тут бесплатные объявления');
+    $this->headLink()->headLink(array('rel' => 'shortcut icon','href' => $this->baseUrl().'/images/favicon.ico', 'type' => 'image/x-icon'))
+        ->headLink(array('rel' => 'stylesheet','href' => $this->baseUrl().'/css/reset.css', 'type' => 'text/css') ,'APPEND')
+        ->headLink(array('rel' => 'stylesheet','href' => $this->baseUrl().'/css/style.css', 'type' => 'text/css') ,'APPEND');
+    echo $this->doctype()."\n";
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+
+<head>    
+    <?php echo $this->headMeta()."\n"; ?>
+    <?php echo $this->headTitle()."\n"; ?>
+    <?php echo $this->headLink(); ?> 
+    <?php echo $this->jQuery(); ?>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.noty.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/default.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/top.js"></script>
+
+</head>
+    
+    <body>
+        <!-- Container -->
+        <div id="container">        
+            <!-- Top -->
+            <div class="top"> 
+            	<!-- Logo -->
+            	<a href="<?php echo $this->baseUrl(); ?>/">
+                    <div id="logo">
+                        <p>ТУТ бесплатные объявления</p>
+                    </div>
+                </a>
+                <!-- /Logo -->
+                
+                <!-- Social Icons -->
+                <ul class="socialicons">
+                    <li><a href="#" class="social-facebook"></a></li>
+                    <li><a href="#" class="social-twitter"></a></li>
+                    <li><a href="#" class="social-googleplus"></a></li>
+                </ul>
+                <!-- /Social Icons -->
+            </div>
+            <!-- /Top -->
+            
+            <!-- Content -->
+            <div id="content" >
+                <!-- Resume -->
+                <div id="body">
+                <?php echo $this->layout()->content; ?>
+                </div>
+                <!-- /Resume -->
+            </div>
+            <!-- /Content -->
+            
+            <!-- Footer -->
+            <div class="footer">
+            	<div class="copyright">Copyright © <?php echo date("Y"); ?> Тут</div>
+            </div>
+            <!-- /Footer --> 
+            
+        </div>
+        <!-- /Container -->
+    </body>
+</html>

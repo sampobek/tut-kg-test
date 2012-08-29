@@ -1,43 +1,64 @@
-<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+    <div class="main-section">
+        <form enctype="multipart/form-data" action="salam.php">
+            <input type="text" id="main-search" placeholder="Поиск объявлений..." autocomplete="off"/>
+            <input type="submit" class="search-button" value="Поиск"/>
+        </form>
+              
+        <ul id="da-thumbs" class="da-thumbs">
+        <?php foreach($this->cat_list as $value): ?>
+            <li>
+                <a href="#">
+                    <div class="cat-name"><span><?php echo $value["name"]; ?></span></div>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        </ul>
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
-
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
-
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
-</style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
-
-    <h3>This is your project's main page</h3>
-
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
+        <div class="ad-list-element">
+            <div class="ad-list-image">
+                <img src="images/manas.jpg"/>
+            </div>
+            <div class="ad-list-text">
+                <a href="<?php echo $this->baseUrl(); ?>/ad">
+                    <strong>	
+                    Крупной московской компании требуются профессиональные водители-экспедиторы категорий В, С, Е.</strong>
+                </a>
+                <p>Цена</p>
+                <p>Категория и подкатегория</p>
+            </div>
+        </div>
+        <div class="ad-list-element" style="background-color: #ecfba5;">
+            <div class="ad-list-image">
+                <img src="images/manas.jpg"/>
+            </div>
+            <div class="ad-list-text">
+                <a href="#">
+                    <strong>	
+                    дладлываы владылвад ылвдалы ыдладлыдвла ывладылва дывладылваыдвлаыдвалыдвладлыва дывлалывадвлыадвдла</strong></a>
+                    <p>Цена</p>
+                    <p>Категория и подкатегория</p>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="right-section">
+        <a href="<?php echo $this->baseUrl(); ?>/ad/new"><input type="submit" value="+ Новое объявление" class="add-ad-button"/></a>
+        <div class="real-ad-style">
+            <div class="real-ad-style-top">
+            <a href="<?php echo $this->baseUrl(); ?>/account/signin">Вход</a> /
+            <a href="<?php echo $this->baseUrl(); ?>/account/signup">Регистрация</a>
+            <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+            <p><?php echo Zend_Auth::getInstance()->getIdentity()->user_email; ?></p>
+            <a href="<?php echo $this->baseUrl(); ?>/account/signout">Выход</a>
+            <?php endif; ?>
+            </div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+

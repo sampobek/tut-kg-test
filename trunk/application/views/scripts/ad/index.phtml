@@ -1,3 +1,18 @@
-    <div id="view-content">
-	<p>View script for controller <b>Ad</b> and script/action name <b>index</b></p>
+<div class="main-section">
+    <div class="ad-image">
+        <img src="./images/girl.jpg"/>
     </div>
+    <div class="ad-thumb-box">
+        <ul class="ad-thumb">
+            <li><a href="./images/girl.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
+            <li><a href="./images/girl1.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
+            <li><a href="./images/girl2.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
+            <li><a href="./images/girl3.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    function galery(url){
+        $(".ad-image").html("<img src='"+url+"'/>");
+    }
+</script>

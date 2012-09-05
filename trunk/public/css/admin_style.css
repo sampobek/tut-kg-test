@@ -1,0 +1,19 @@
+.admin-menu
+{
+    float: left;
+}
+.admin-menu ul
+{
+    clear:right;
+}
+.admin-menu li
+{
+    float: left;
+    display: block;
+    -webkit-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    -ie-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+    padding: 10px;
+}

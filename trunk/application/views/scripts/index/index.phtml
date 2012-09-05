@@ -1,14 +1,14 @@
-    <div class="main-section">
-        <form enctype="multipart/form-data" action="salam.php">
-            <input type="text" id="main-search" placeholder="Поиск объявлений..." autocomplete="off"/>
-            <input type="submit" class="search-button" value="Поиск"/>
-        </form>
+<div class="main-section">
+<form enctype="multipart/form-data" action="salam.php" style="margin-bottom: 10px;">
+                            <input type="text" id="main-search" placeholder="Поиск объявлений..." autocomplete="off"/>
+                            <input type="submit" class="search-button" value="Поиск"/>
+                        </form>
               
         <ul id="da-thumbs" class="da-thumbs">
         <?php foreach($this->cat_list as $value): ?>
             <li>
                 <a href="#">
-                    <div class="cat-name"><span><?php echo $value["name"]; ?></span></div>
+                    <div class="cat-name"><span><?php echo $this->escape($value["name"]); ?></span></div>
                 </a>
             </li>
         <?php endforeach; ?>
@@ -33,15 +33,15 @@
             </div>
             <div class="ad-list-text">
                 <a href="#">
-                    <strong>	
-                    дладлываы владылвад ылвдалы ыдладлыдвла ывладылва дывладылваыдвлаыдвалыдвладлыва дывлалывадвлыадвдла</strong></a>
+                    <strong>
+                        Самат жинди
+                    </strong></a>
                     <p>Цена</p>
                     <p>Категория и подкатегория</p>
             </div>
         </div>
-    </div>
-
-    <div class="right-section">
+</div>
+  <div class="right-section">
         <a href="<?php echo $this->baseUrl(); ?>/ad/new"><input type="submit" value="+ Новое объявление" class="add-ad-button"/></a>
         <div class="real-ad-style">
             <div class="real-ad-style-top">
@@ -60,5 +60,29 @@
             </ul>
         </div>
     </div>
-
-
+<script type="text/javascript">
+    $(function(){
+        pryg();
+    });
+    function pryg(){
+        $(".add-ad-button").animate({
+                "margin-top": "10px"
+            },"slow",function(){
+                $("body").animate({
+            "background-color":"#eeffff"
+            },"slow");
+                skok();
+            });
+        
+    }
+    function skok(){
+        $(".add-ad-button").animate({
+                "margin-top": "-10px"
+            },"slow",function(){
+                $("body").animate({
+            "background-color":"#eeffee"
+            },"slow");
+                pryg();
+            });
+    }
+</script>

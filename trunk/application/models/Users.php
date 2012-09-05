@@ -8,15 +8,15 @@ class Application_Model_Users extends Zend_Db_Table_Abstract
     {
         return $this->insert($data);
     }
-    public function updateUser($email, $data = array())
+    public function updateUser($id, $data = array())
     {
-        $this->update($data, "user_email = "."{$email}");
+        $this->update($data, "user_id = ".$id);
     }
     public function checkData($column,$data)
      {
          $select = $this->select()->where($column.' = ?', $data);
          $row = $this->fetchRow($select);
-         return $row[$column];
+         return $row['user_id'];
      }
 }
 

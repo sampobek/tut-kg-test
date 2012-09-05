@@ -4,7 +4,8 @@
     $this->headTitle('Тут бесплатные объявления');
     $this->headLink()->headLink(array('rel' => 'shortcut icon','href' => $this->baseUrl().'/images/favicon.ico', 'type' => 'image/x-icon'))
         ->headLink(array('rel' => 'stylesheet','href' => $this->baseUrl().'/css/reset.css', 'type' => 'text/css') ,'APPEND')
-        ->headLink(array('rel' => 'stylesheet','href' => $this->baseUrl().'/css/style.css', 'type' => 'text/css') ,'APPEND');
+        ->headLink(array('rel' => 'stylesheet','href' => $this->baseUrl().'/css/style.css', 'type' => 'text/css') ,'APPEND')
+        ->headLink(array('rel' => 'stylesheet','href' => $this->baseUrl().'/css/admin_style.css', 'type' => 'text/css') ,'APPEND');
     echo $this->doctype()."\n";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
@@ -14,9 +15,6 @@
     <?php echo $this->headTitle()."\n"; ?>
     <?php echo $this->headLink(); ?> 
     <?php echo $this->jQuery(); ?>
-    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.noty.js"></script>
-    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/default.js"></script>
-    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/top.js"></script>
 
 </head>
     
@@ -47,7 +45,7 @@
             <div id="content" >
                 <!-- Resume -->
                 <div id="body">
-                <?php echo $this->layout()->content; ?>
+                        <?php echo $this->layout()->content; ?>
                 </div>
                 <!-- /Resume -->
             </div>

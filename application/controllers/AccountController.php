@@ -91,29 +91,31 @@ class AccountController extends Zend_Controller_Action
                 // получаем экземпляр Zend_Auth
                 $auth = Zend_Auth::getInstance();
             
-            // делаем попытку авторизировать пользователя
-            $result = $auth->authenticate($authAdapter);
+                // делаем попытку авторизировать пользователя
+                $result = $auth->authenticate($authAdapter);
             
-            // если авторизация прошла успешно
-            if ($result->isValid()) {
-                // используем адаптер для извлечения оставшихся данных о пользователе
-                $identity = $authAdapter->getResultRowObject();
+                // если авторизация прошла успешно
+                if ($result->isValid()) {
+                    // используем адаптер для извлечения оставшихся данных о пользователе
+                    $identity = $authAdapter->getResultRowObject();
                 
-                // получаем доступ к хранилищу данных Zend
-                $authStorage = $auth->getStorage();
+                    // получаем доступ к хранилищу данных Zend
+                    $authStorage = $auth->getStorage();
                 
-                // помещаем туда информацию о пользователе,
-                // чтобы иметь к ним доступ при конфигурировании Acl
-                $authStorage->write($identity);
-                echo $username;
+                    // помещаем туда информацию о пользователе,
+                    // чтобы иметь к ним доступ при конфигурировании Acl
+                    $authStorage->write($identity);
                 
-                $user = new Application_Model_Users();
-                $user_info = $user->checkData("user_email", $username);
-                $data = array("user_last_date" => date("Y-m-d H:i:s"));
-                $user->updateUser($user_info, $data);
-                // Используем библиотечный helper для редиректа
-                // на controller = index, action = index
-                //$this->_helper->redirector('index', 'index');
+                    $user = new Application_Model_Users();
+                    $user_id = $user->checkData("user_email", $username);
+                    $data = array(
+                        "user_last_date" => date("Y-m-d H:i:s"),
+                        "user_last_ip" => $_SERVER['REMOTE_ADDR']);
+                    $user->updateUser($user_id, $data);
+                
+                    // Используем библиотечный helper для редиректа
+                    // на controller = index, action = index
+                    $this->_helper->redirector('index', 'index');
                 } 
                 else {
                     $this->view->errMessage = 'Неправильный email и/или пароль';

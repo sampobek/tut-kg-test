@@ -15,6 +15,8 @@ class AccountController extends Zend_Controller_Action
 
     public function signupAction()
     {
+        $this->view->headTitle("Регистрация");
+        
         $form = new Application_Form_Signup();
         $form->submit->setLabel("Зарегистрироваться");
         $this->view->signup = $form;
@@ -27,17 +29,33 @@ class AccountController extends Zend_Controller_Action
                 $email = $form->getValue('email');
                 $password = $form->getValue('password');
                 $password_confirm = $form->getValue('password_confirm');
-                $signup_date = date("Y-m-d H:i:s");
+                
+                $email_validate = new Zend_Validate_EmailAddress();
+                if($email_validate->isValid($email))
+                {
+                    if($password == $password_confirm)
+                    {
+                        $signup_date = date("Y-m-d H:i:s");
              
-                $data = array(
-                    'user_email' => $email,
-                    'user_password' => md5($password),
-                    'user_signup_date' => $signup_date,
-                    
-                );
-                $user = new Application_Model_Users();
-                $user_id = $user->addUser($data);
-                $this->_helper->redirector('signin', 'account');
+                        $data = array(
+                            'email' => $email,
+                            'password' => md5($password),
+                            'signup_date' => $signup_date,
+                        );
+                        $user = new Application_Model_Users();
+                        $user_id = $user->addUser($data);
+                        $this->_helper->redirector('signin', 'account');
+                    }
+                    else
+                    {
+                        $form->password->setValue($password);
+                        $this->view->pass_error = "Пароли не совпадают";
+                    }
+                }
+                else
+                {
+                    $this->view->email_error = "Неправильный email";
+                }
             }
             else
             {
@@ -49,13 +67,17 @@ class AccountController extends Zend_Controller_Action
 
     public function signinAction()
     {
+        $this->view->headTitle("Войти");
+        
         // проверяем, авторизирован ли пользователь
         if (Zend_Auth::getInstance()->hasIdentity())
         {
-            // если да, то делаем редирект, чтобы исключить многократную авторизацию
             $this->_helper->redirector('index', 'account');
+            // если да, то делаем редирект, чтобы исключить многократную авторизацию
         }
         $signin = new Application_Form_Signin();
+        $redirect = $_SERVER["HTTP_REFERER"];
+        $signin->setAction("?redirect=".$redirect);
         $signin->submit->setLabel("Войти");
         $this->view->signin = $signin;
         
@@ -76,12 +98,12 @@ class AccountController extends Zend_Controller_Action
                 
                 $authAdapter->setTableName('users');
                   
-                $authAdapter->setIdentityColumn('user_email');
+                $authAdapter->setIdentityColumn('email');
             
                 // указываем таблицу, где необходимо искать данные о пользователях
                 // колонку, где искать имена пользователей,
                 // а также колонку, где хранятся пароли
-                $authAdapter->setCredentialColumn('user_password');
+                $authAdapter->setCredentialColumn('password');
             
             
                 // подставляем полученные данные из формы
@@ -95,7 +117,8 @@ class AccountController extends Zend_Controller_Action
                 $result = $auth->authenticate($authAdapter);
             
                 // если авторизация прошла успешно
-                if ($result->isValid()) {
+                if ($result->isValid()) 
+                {
                     // используем адаптер для извлечения оставшихся данных о пользователе
                     $identity = $authAdapter->getResultRowObject();
                 
@@ -107,17 +130,19 @@ class AccountController extends Zend_Controller_Action
                     $authStorage->write($identity);
                 
                     $user = new Application_Model_Users();
-                    $user_id = $user->checkData("user_email", $username);
+                    $user_id = $user->checkData("email", $username);
                     $data = array(
-                        "user_last_date" => date("Y-m-d H:i:s"),
-                        "user_last_ip" => $_SERVER['REMOTE_ADDR']);
+                        "signin_date" => date("Y-m-d H:i:s"),
+                        "ip" => $_SERVER['REMOTE_ADDR']);
                     $user->updateUser($user_id, $data);
                 
                     // Используем библиотечный helper для редиректа
                     // на controller = index, action = index
-                    $this->_helper->redirector('index', 'index');
+                    $redirect = $this->_request->getParam("redirect");
+                    header("Location: ".$redirect);
                 } 
-                else {
+                else 
+                {
                     $this->view->errMessage = 'Неправильный email и/или пароль';
                 }
             }
@@ -128,13 +153,35 @@ class AccountController extends Zend_Controller_Action
     public function signoutAction()
     {
         // уничтожаем информацию об авторизации пользователя
-	    Zend_Auth::getInstance()->clearIdentity();
-	    // и отправляем его на главную
-	    $this->_helper->redirector('index', 'index');
+	Zend_Auth::getInstance()->clearIdentity();
+	// и отправляем его на главную
+	$redirect = $_SERVER["HTTP_REFERER"];
+        header("Location: ".$redirect);
+    }
+
+    public function messagesAction()
+    {
+        $this->view->headTitle("Сообщения");
+    }
+
+    public function settingsAction()
+    {
+        $this->view->headTitle("Настройки");
+    }
+
+    public function adsAction()
+    {
+        $this->view->headTitle("Мои объявления");
     }
 
 
 }
+
+
+
+
+
+
 
 
 

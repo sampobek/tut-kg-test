@@ -1,88 +1,23 @@
 <div class="main-section">
-<form enctype="multipart/form-data" action="salam.php" style="margin-bottom: 10px;">
-                            <input type="text" id="main-search" placeholder="Поиск объявлений..." autocomplete="off"/>
-                            <input type="submit" class="search-button" value="Поиск"/>
-                        </form>
-              
-        <ul id="da-thumbs" class="da-thumbs">
-        <?php foreach($this->cat_list as $value): ?>
-            <li>
-                <a href="#">
-                    <div class="cat-name"><span><?php echo $this->escape($value["name"]); ?></span></div>
-                </a>
-            </li>
-        <?php endforeach; ?>
-        </ul>
+    <form enctype="multipart/form-data" method="GET" action="<?php echo $this->baseUrl(); ?>/search" style="margin-bottom: 10px;">
+        <input type="text" name="q" id="main-search" placeholder="Поиск объявлений..." autocomplete="off"/>
+        <input type="submit" class="search-button" value="Поиск"/>
+    </form>
 
-        <div class="ad-list-element">
-            <div class="ad-list-image">
-                <img src="images/manas.jpg"/>
-            </div>
-            <div class="ad-list-text">
-                <a href="<?php echo $this->baseUrl(); ?>/ad">
-                    <strong>	
-                    Крупной московской компании требуются профессиональные водители-экспедиторы категорий В, С, Е.</strong>
-                </a>
-                <p>Цена</p>
-                <p>Категория и подкатегория</p>
-            </div>
-        </div>
-        <div class="ad-list-element" style="background-color: #ecfba5;">
-            <div class="ad-list-image">
-                <img src="images/manas.jpg"/>
-            </div>
-            <div class="ad-list-text">
-                <a href="#">
-                    <strong>
-                        Самат жинди
-                    </strong></a>
-                    <p>Цена</p>
-                    <p>Категория и подкатегория</p>
-            </div>
-        </div>
+    <ul id="da-thumbs" class="da-thumbs">
+        <?php if(isset($this->cat_list))foreach($this->cat_list as $value): ?>
+            <a href="<?php echo $this->baseUrl().'/ad/list?category='.$value["id"]; ?>">
+                <li>
+                    <div class="cat-name">
+                        <span><p><?php echo $value["name"]; ?></p></span>
+                        <!-- <img src="<?php //echo $this->baseUrl(); ?>/images/img_mini_4.jpg"/> -->
+                    </div>
+                </li>
+            </a>
+        <?php endforeach; ?>
+    </ul>
 </div>
-  <div class="right-section">
-        <a href="<?php echo $this->baseUrl(); ?>/ad/new"><input type="submit" value="+ Новое объявление" class="add-ad-button"/></a>
-        <div class="real-ad-style">
-            <div class="real-ad-style-top">
-            <a href="<?php echo $this->baseUrl(); ?>/account/signin">Вход</a> /
-            <a href="<?php echo $this->baseUrl(); ?>/account/signup">Регистрация</a>
-            <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
-            <p><?php echo Zend_Auth::getInstance()->getIdentity()->user_email; ?></p>
-            <a href="<?php echo $this->baseUrl(); ?>/account/signout">Выход</a>
-            <?php endif; ?>
-            </div>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
-<script type="text/javascript">
-    $(function(){
-        pryg();
-    });
-    function pryg(){
-        $(".add-ad-button").animate({
-                "margin-top": "10px"
-            },"slow",function(){
-                $("body").animate({
-            "background-color":"#eeffff"
-            },"slow");
-                skok();
-            });
-        
-    }
-    function skok(){
-        $(".add-ad-button").animate({
-                "margin-top": "-10px"
-            },"slow",function(){
-                $("body").animate({
-            "background-color":"#eeffee"
-            },"slow");
-                pryg();
-            });
-    }
-</script>
+
+<div class="right-section">
+    <?php echo $this->render("right.phtml");?>
+</div>

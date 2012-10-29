@@ -1,14 +1,23 @@
 <div class="main-section">
-    <div class="ad-image">
-        <img src="./images/girl.jpg"/>
+    <h3 style="margin-bottom: 10px;"><?php echo $this->ad->title; ?></h3>
+    <div class="ad-image-box">
+        <div class="ad-image">
+            <img src="./images/img_1.jpg"/>
+        </div>
+        <div class="ad-thumb-box">
+            <ul class="ad-thumb">
+                <?php for($i=1;$i<5;$i++): ?>
+                <li>
+                    <a href="./images/img_<?php echo $i; ?>.jpg" onclick="galery(this.href); return false;">
+                        <img src="images/img_mini_<?php echo $i; ?>.jpg"/>
+                    </a>
+                </li>
+                <?php endfor; ?>
+            </ul>
+        </div>
     </div>
-    <div class="ad-thumb-box">
-        <ul class="ad-thumb">
-            <li><a href="./images/girl.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
-            <li><a href="./images/girl1.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
-            <li><a href="./images/girl2.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
-            <li><a href="./images/girl3.jpg" onclick="galery(this.href); return false;"><img src="images/manas.jpg"/></a></li>
-        </ul>
+    <div class="description" style="margin-top: 20px">
+        <p><?php echo $this->ad->description; ?></p>
     </div>
 </div>
 <script type="text/javascript">

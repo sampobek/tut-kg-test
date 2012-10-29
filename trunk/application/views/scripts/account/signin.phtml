@@ -1,5 +1,5 @@
 <?php if(isset($this->errMessage)){echo $this->errMessage;} ?>
-<form id="new" enctype="application/x-www-form-urlencoded" action="" method="post">
+<form id="new" enctype="<?php echo $this->signin->getEnctype(); ?>" action="<?php echo $this->signin->getAction(); ?>" method="post">
 <table>
     <tr>
         <td class="signup-label"><p>Электронная почта</p></td><td><?php echo $this->signin->email; ?></td>

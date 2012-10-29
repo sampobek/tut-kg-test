@@ -7,23 +7,8 @@ class Application_Form_Signup extends Zend_Form
     {
         $this->setName('signup');
         
-        $email_validator = new Zend_Validate_EmailAddress();
-        $email_validator->setMessages(
-                Array(
-                    'emailAddressInvalidFormat'=> 'Пожалуйста заполните это поле',
-                    'emailAddressInvalid'=> 'sdf',
-                    'emailAddressInvalidHostname' => 'sdghgfhf',
-                    'emailAddressInvalidMxRecord' => 'sdfghfghf',
-                    'emailAddressInvalidSegment' => 'dfdfghfghf',
-                    'emailAddressDotAtom' => 'dfgfhfgg',
-                    'emailAddressQuotedString' => 'dffghfg',
-                    'emailAddressInvalidLocalPart' => 'dfghfghfg',
-                    'emailAddressLengthExceeded' => 'dfgdhfghg',
-                    ));
-        
         $empty = new Zend_Validate_NotEmpty();
         $empty->setMessage('Пожалуйста заполните это поле');
-        
          $email = new Zend_Form_Element_Text('email');
          $email->removeDecorator('Label')
                  ->removeDecorator('HtmlTag')
@@ -32,7 +17,6 @@ class Application_Form_Signup extends Zend_Form
                  ->setRequired(true)
                  ->addFilter('StripTags')
                  ->addFilter('StringTrim')
-                 ->addValidator($email_validator)
                  ->addValidator($empty);
          
          $password = new Zend_Form_Element_Password('password');

@@ -11,7 +11,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $category = new Application_Model_Category();
-        $cat_list = $category->getMainCat();
+        $cat_list = $category->getCategories(0);
         $this->view->cat_list = $cat_list;
     }
 

@@ -13,11 +13,15 @@
 <head>    
     <?php echo $this->headMeta()."\n"; ?>
     <?php echo $this->headTitle()."\n"; ?>
-    <?php echo $this->headLink(); ?> 
-    <?php echo $this->jQuery(); ?>
-
+    <?php echo $this->headLink()."\n"; ?>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.autosize-min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('#description').autosize({append: "\n"});
+    });
+</script>
 </head>
-    
     <body>
         <!-- Container -->
         <div id="container">        
@@ -26,16 +30,26 @@
             	<!-- Logo -->
             	<a href="<?php echo $this->baseUrl(); ?>/">
                     <div id="logo">
-                        <p>ТУТ бесплатные объявления</p>
+                        <p>ТУТ</p>
                     </div>
                 </a>
                 <!-- /Logo -->
                 
                 <!-- Social Icons -->
                 <ul class="socialicons">
-                    <li><a href="#" class="social-facebook"></a></li>
-                    <li><a href="#" class="social-twitter"></a></li>
-                    <li><a href="#" class="social-googleplus"></a></li>
+                    <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+                    <li><p class="email"><?php echo Zend_Auth::getInstance()->getIdentity()->email; ?></p></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/messages" class="messages"></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/ads" class="ads"></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/settings" class="settings"></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/signout" class="signout"></a></li>
+                    <?php else: ?>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/signin" class="signin">Войти</a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/signup" class="signup">Зарегистрироваться</a></li>
+                    <?php endif; ?>
+                    <li><a href="http://facebook.com" class="social-facebook" target="_blank"></a></li>
+                    <li><a href="http://twitter.com" class="social-twitter" target="_blank"></a></li>
+                    <li><a href="http://plus.google.com" class="social-googleplus" target="_blank"></a></li>
                 </ul>
                 <!-- /Social Icons -->
             </div>

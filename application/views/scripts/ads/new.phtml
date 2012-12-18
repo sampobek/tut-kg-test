@@ -2,26 +2,29 @@
 <form id="new" enctype="application/x-www-form-urlencoded" action="" method="post">
     <table>
         <tr>
-            <td>Заголовок</td><td><?php echo $this->new->title; ?></td>
+            <td class="label">Заголовок</td><td><?php echo $this->new->title; ?></td>
         </tr>
         <tr>
-            <td>Категория</td>
+            <td  class="label">Категория</td>
             <td>
                 <?php echo $this->new->category; ?>
                 <?php echo $this->new->subcategory; ?>
             </td>
         </tr>
         <tr>
-            <td class="title-label">Описание</td><td><?php echo $this->new->description; ?></td>
+            <td class="label" id="title-label">Описание</td><td><?php echo $this->new->description; ?></td>
         </tr>
         <tr>
-            <td>Контактное лицо</td><td><?php echo $this->new->name; ?></td>
+            <td class="label">Контактное лицо</td><td><?php echo $this->new->name; ?></td>
         </tr>
         <tr>
-            <td>Номер телефона</td><td><?php echo $this->new->phone; ?></td>
+            <td class="label">Номер телефона</td><td><?php echo $this->new->phone; ?></td>
         </tr>
         <tr>
-            <td>email</td><td><?php echo $this->new->email; ?></td>
+            <td class="label">email</td><td><?php echo $this->new->email; ?></td>
+        </tr>
+        <tr>
+            <td class="label">Picture</td><td><?php echo $this->new->picture; ?></td>
         </tr>
         <tr>
             <td></td><td><?php echo $this->new->submit; ?></td>
@@ -32,7 +35,7 @@
 <script type="text/javascript">
     function getcategory(){
         $.ajax({
-            url:'<?php echo $this->baseUrl(); ?>/ad/getcategory',
+            url:'<?php echo $this->baseUrl(); ?>/ads/getcategory',
             dataType : "json",
             data: { category_id:$("#category").val() },
             success: function (data) {

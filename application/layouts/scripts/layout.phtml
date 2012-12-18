@@ -38,13 +38,13 @@
                 <!-- Social Icons -->
                 <ul class="socialicons">
                     <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
-                    <li><p class="email"><?php echo Zend_Auth::getInstance()->getIdentity()->email; ?></p></li>
-                    <li><a href="<?php echo $this->baseUrl(); ?>/account/messages" class="messages"></a></li>
-                    <li><a href="<?php echo $this->baseUrl(); ?>/account/ads" class="ads"></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account" class="email"><?php echo Zend_Auth::getInstance()->getIdentity()->email; ?></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/messages" class="messages"></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/ads/my" class="ads"></a></li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/account/settings" class="settings"></a></li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/account/signout" class="signout"></a></li>
                     <?php else: ?>
-                    <li><a href="<?php echo $this->baseUrl(); ?>/account/signin" class="signin">Войти</a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/account/signin?redirect=<?php echo "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="signin">Войти</a></li>
                     <li><a href="<?php echo $this->baseUrl(); ?>/account/signup" class="signup">Зарегистрироваться</a></li>
                     <?php endif; ?>
                     <li><a href="http://facebook.com" class="social-facebook" target="_blank"></a></li>
@@ -67,7 +67,10 @@
             
             <!-- Footer -->
             <div class="footer">
-            	<div class="copyright">Copyright © <?php echo date("Y"); ?> Тут</div>
+            	<div class="copyright" style="margin-right: 10px">Copyright © <?php echo date("Y"); ?> Тут</div> 
+                |<a href="<?php echo $this->baseUrl(); ?>/admin">
+                    Админ панель
+                </a>
             </div>
             <!-- /Footer --> 
             

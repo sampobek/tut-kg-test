@@ -10,7 +10,9 @@ class Admin_CategoriesController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $category = new Admin_Model_Category();
+        $cat = $category->getCategories();
+        $this->view->cat = $cat;
     }
 
 

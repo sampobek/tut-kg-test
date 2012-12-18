@@ -1,6 +1,6 @@
 <?php
 
-class AdController extends Zend_Controller_Action
+class AdsController extends Zend_Controller_Action
 {
 
     public function init()
@@ -11,12 +11,14 @@ class AdController extends Zend_Controller_Action
     public function indexAction()
     {
         $id = $this->_request->getParam("id"); 
+        if(isset($id))
+        {
+            $ad = new Application_Model_Ads();
+            $getad = $ad->getAd($id);
+            $this->view->ad = $getad;
         
-        $ad = new Application_Model_Ads();
-        $getad = $ad->getAd($id);
-        $this->view->ad = $getad;
-        
-        $this->view->headTitle($getad->title);
+            $this->view->headTitle($getad->title);
+        }        
     }
 
     public function newAction()
@@ -25,6 +27,10 @@ class AdController extends Zend_Controller_Action
         
         $new_ad = new Application_Form_New();
         $new_ad->submit->setLabel("Опубликовать");
+        if(Zend_Auth::getInstance()->hasIdentity())
+        {
+            $new_ad->email->setValue(Zend_Auth::getInstance()->getIdentity()->email);
+        }        
         $this->view->new = $new_ad;
         
         if($this->getRequest()->isPost())
@@ -41,16 +47,26 @@ class AdController extends Zend_Controller_Action
                 $email = $new_ad->getValue('email');
                 
                 $data = array(
+                            'email' => $email
+                        );
+                
+                        $user = new Application_Model_Users();
+                        $user_id = $user->addUser($data);
+                        
+                $data = array(
                     "title" => $title,
                     "category" => $category,
                     "subcategory" => $subcategory,
                     "description" => nl2br($description),
                     "name" => $name,
                     "phone" => $phone,
-                    "email" => $email
+                    "email" => $user_id
                 );
                 $addAd = new Application_Model_Ads();
                 $addAd->addAd($data);
+                
+                
+                        
                 $this->_helper->redirector('index', 'index');
             }
             else
@@ -58,10 +74,16 @@ class AdController extends Zend_Controller_Action
                 $new_ad->populate($formData);
             }
         }
+        
     }
 
     public function listAction()
     {
+        if(Zend_Auth::getInstance()->hasIdentity())
+        {
+            $this->view->id = Zend_Auth::getInstance()->getIdentity()->id;
+        } 
+        
         $category = $this->_request->getParam("category");
         $subcategory = $this->_request->getParam("subcategory");
         
@@ -92,14 +114,29 @@ class AdController extends Zend_Controller_Action
         {
             $subcategory = new Application_Model_Category();
             $subcat_list = $subcategory->getCategories($category);
-            foreach($subcat_list as $value)
+            if($subcat_list!="")foreach($subcat_list as $value)
             {
                 $data[$value["id"]] = $value["name"];
             }
+            else
+            {
+                $data[45] = "pusto";
+            }
+            $data[0] = $subcat_list;
             $this->_helper->json($data);
         }
+        
     }
+
+    public function myAction()
+    {
+        $this->view->headTitle("Мои объявления");
+    }
+
+
 }
+
+
 
 
 

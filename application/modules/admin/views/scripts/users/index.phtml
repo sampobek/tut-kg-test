@@ -1,15 +1,17 @@
 <?php echo $this->render("menu.phtml"); ?>
-<div  class="users">
-    <table width="100%" border="2">
+<div class="users">
+    <table width="100%" border="2" class="user-list">
         <tr style="color:#22b1e5">
             <td>Электронный адрес</td>
             <td>Дата регистрации</td>
+            <td>Дата последнего входа</td>
             <td>ip адрес</td>
         </tr>
     <?php foreach($this->get_users as $value): ?>
         <tr>
             <td><?php echo $value["email"]; ?></td>
             <td><?php echo $value["signup_date"]; ?></td>
+            <td><?php echo $value["signin_date"]; ?></td>
             <td><?php echo $value["ip"]; ?></td>
         </tr>
     <?php endforeach; ?>

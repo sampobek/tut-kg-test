@@ -1,16 +1,17 @@
+<div class="signin-box">
 <form id="new" enctype="<?php echo $this->signup->getEnctype(); ?>" action="<?php echo $this->signup->getAction(); ?>" method="post">
 <table>
     <tr>
-        <td class="signup-label"><p>Электронная почта</p></td>
+        <td class="label"><p>Электронная почта</p></td>
         <td><?php echo $this->signup->email; ?></td>
         <td><?php echo $this->email_error; ?></td>
     </tr>
     <tr>
-        <td>Пароль</td>
+        <td class="label">Пароль</td>
         <td><?php echo $this->signup->password; ?></td>
     </tr>
     <tr>
-        <td>Повторите пароль</td>
+        <td class="label">Повторите пароль</td>
         <td><?php echo $this->signup->password_confirm; ?></td>
         <td><?php echo $this->pass_error; ?></td>
     </tr>
@@ -19,3 +20,4 @@
     </tr>
 </table>
 </form>
+</div>

@@ -30,5 +30,8 @@ class Application_Model_Ads extends Zend_Db_Table_Abstract
                  ->where('id = ?', $id);
          return $this->fetchRow($rows);
      }
+     
+     
 }
+
 

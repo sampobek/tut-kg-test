@@ -1,27 +1,5 @@
-/* Menu styles	 */
-/*-------------------------------------------------------*/
-.admin-menu
+.user-list td
 {
-    float: left;
-    width: 860px;
-    margin-bottom: 20px;
+    border: 1px #85DD7C solid;
+    padding: 5px;
 }
-.admin-menu li
-{
-    float: left;
-    display: block;
-    -webkit-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
-    -ie-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-}
-.admin-menu li:hover
-{
-    background-color:#ccffff;
-}
-.admin-menu li.selected
-{
-    background-color:#ccffcc;
-}
-/*-------------------------------------------------------*/

@@ -1,0 +1,26 @@
+<div class="menu">
+    <ul>
+    <?php if(isset($this->subcat_list))foreach($this->subcat_list as $value): ?>
+        <a id="<?php echo $value["id"]; ?>" href="<?php echo $this->baseUrl().'/ads/list?subcategory='.$value["id"]; ?>">
+            <li><?php echo $value["name"]; ?></li>
+        </a>
+    <?php endforeach; ?>
+        </ul>
+</div>
+<?php $i = 1; ?>
+<?php if(isset($this->adlist))foreach($this->adlist as $value): ?>
+<a href="<?php echo $this->baseUrl(); ?>/ads?id=<?php echo $value["id"]; ?>">
+    <div class="ad-list" <?php if(isset($this->id)&&$value["email"]==$this->id): ?> style="border-left: 1px solid #ccc;" <?php endif; ?>>
+        <div class="ad-list-image">
+            <div class="mini-img">
+                <img src="<?php echo $this->baseUrl(); ?>/images/img_mini_<?php echo $i; ?>.jpg"/>
+            </div>
+        </div>
+        <div class="ad-list-text">
+            <strong><?php echo $value["title"]; ?></strong>
+            <p>Цена</p>
+            <p>Категория</p>
+        </div>
+</div>
+</a>
+<?php $i++; endforeach; ?>

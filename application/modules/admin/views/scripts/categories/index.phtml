@@ -1,1 +1,6 @@
 <?php echo $this->render("menu.phtml"); ?>
+<div>
+    <?php foreach($this->cat as $value): ?>
+    <p><?php echo $value["name"]; ?></p>
+    <?php endforeach; ?>
+</div>

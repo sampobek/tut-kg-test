@@ -6,7 +6,15 @@ class Application_Model_Users extends Zend_Db_Table_Abstract
     
     public function addUser($data = array())
     {
-        return $this->insert($data);
+        $check = $this->checkData("email",$data["email"]);
+        if(!$check)
+        {
+            return $this->insert($data);
+        }
+        else
+        {
+            return $check["id"];
+        }
     }
     public function updateUser($id, $data = array())
     {

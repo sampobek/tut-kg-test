@@ -12,35 +12,41 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
-        <controllerFile controllerName="Ad">
+        <controllerFile controllerName="Ads">
           <actionMethod actionName="index"/>
           <actionMethod actionName="new"/>
           <actionMethod actionName="list"/>
           <actionMethod actionName="getcategory"/>
+          <actionMethod actionName="my"/>
         </controllerFile>
         <controllerFile controllerName="Account">
           <actionMethod actionName="index"/>
           <actionMethod actionName="signup"/>
           <actionMethod actionName="signin"/>
           <actionMethod actionName="signout"/>
-          <actionMethod actionName="messages"/>
           <actionMethod actionName="settings"/>
-          <actionMethod actionName="ads"/>
         </controllerFile>
         <controllerFile controllerName="Search">
           <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Messages">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="my"/>
+          <actionMethod actionName="new"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="New"/>
         <formFile formName="Signup"/>
         <formFile formName="Signin"/>
+        <formFile formName="Message"/>
       </formsDirectory>
       <layoutsDirectory/>
       <modelsDirectory>
         <modelFile modelName="Users"/>
         <modelFile modelName="Category"/>
         <modelFile modelName="Ads"/>
+        <modelFile modelName="Messages"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="admin">
@@ -63,6 +69,7 @@
           </layoutsDirectory>
           <modelsDirectory>
             <modelFile modelName="Users"/>
+            <modelFile modelName="Category"/>
           </modelsDirectory>
           <viewsDirectory>
             <viewScriptsDirectory>
@@ -89,10 +96,10 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Ad">
+          <viewControllerScriptsDirectory forControllerName="Ads">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Ad">
+          <viewControllerScriptsDirectory forControllerName="Ads">
             <viewScriptFile forActionName="new"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Account">
@@ -107,23 +114,29 @@
           <viewControllerScriptsDirectory forControllerName="Account">
             <viewScriptFile forActionName="signout"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Ad">
+          <viewControllerScriptsDirectory forControllerName="Ads">
             <viewScriptFile forActionName="list"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Account">
-            <viewScriptFile forActionName="messages"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Account">
             <viewScriptFile forActionName="settings"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Account">
-            <viewScriptFile forActionName="ads"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Ad">
+          <viewControllerScriptsDirectory forControllerName="Ads">
             <viewScriptFile forActionName="getcategory"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Search">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ads">
+            <viewScriptFile forActionName="my"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Messages">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Messages">
+            <viewScriptFile forActionName="my"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Messages">
+            <viewScriptFile forActionName="new"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

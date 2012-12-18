@@ -44,7 +44,14 @@ class AccountController extends Zend_Controller_Action
                         );
                         $user = new Application_Model_Users();
                         $user_id = $user->addUser($data);
-                        $this->_helper->redirector('signin', 'account');
+                        if($user_id)
+                        {
+                            $this->_helper->redirector('signin', 'account');
+                        }
+                        else
+                        {
+                            echo "Такой пользователь существует";
+                        }
                     }
                     else
                     {
@@ -76,8 +83,8 @@ class AccountController extends Zend_Controller_Action
             // если да, то делаем редирект, чтобы исключить многократную авторизацию
         }
         $signin = new Application_Form_Signin();
-        $redirect = $_SERVER["HTTP_REFERER"];
-        $signin->setAction("?redirect=".$redirect);
+        //$redirect = $_SERVER["HTTP_REFERER"];
+        //$signin->setAction("?redirect=".$redirect);
         $signin->submit->setLabel("Войти");
         $this->view->signin = $signin;
         
@@ -139,10 +146,18 @@ class AccountController extends Zend_Controller_Action
                     // Используем библиотечный helper для редиректа
                     // на controller = index, action = index
                     $redirect = $this->_request->getParam("redirect");
-                    header("Location: ".$redirect);
+                    if(isset($redirect)&&$redirect!="")
+                    {
+                        header("Location: ".$redirect);
+                    }
+                    else
+                    {
+                        $this->_helper->redirector('index', 'index');
+                    }
                 } 
                 else 
                 {
+                    $signin->populate($formData);
                     $this->view->errMessage = 'Неправильный email и/или пароль';
                 }
             }
@@ -159,21 +174,10 @@ class AccountController extends Zend_Controller_Action
         header("Location: ".$redirect);
     }
 
-    public function messagesAction()
-    {
-        $this->view->headTitle("Сообщения");
-    }
-
     public function settingsAction()
     {
         $this->view->headTitle("Настройки");
     }
-
-    public function adsAction()
-    {
-        $this->view->headTitle("Мои объявления");
-    }
-
 
 }
 

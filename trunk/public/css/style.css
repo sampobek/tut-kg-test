@@ -75,6 +75,7 @@ input[type="text"],input[type="password"]
     color: #333333;
     outline: medium none currentColor;
     margin: 5px 0;
+    width: 250px;
 }
 input[type="text"]:focus,input[type="password"]:focus,textarea:focus
 {
@@ -122,6 +123,44 @@ input[type="submit"]:hover
     background-image: -webkit-linear-gradient(90deg , rgb(138,211,129) 0%, rgb(204,237,200) 100%);
     background-image: -ms-linear-gradient(90deg , rgb(138,211,129) 0%, rgb(204,237,200) 100%);
     background-image: linear-gradient(90deg , rgb(138,211,129) 0%, rgb(204,237,200) 100%);
+}
+/*-------------------------------------------------------*/
+
+/* Label */
+/*-------------------------------------------------------*/
+.label
+{
+    text-align: right;
+    padding-right: 10px;
+}
+/*-------------------------------------------------------*/
+
+
+/* Menu styles	 */
+/*-------------------------------------------------------*/
+.menu
+{
+    float: left;
+    width: 860px;
+    margin-bottom: 20px;
+}
+.menu li
+{
+    float: left;
+    display: block;
+    -webkit-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    -ie-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+.menu li:hover
+{
+    background-color:#ccffff;
+}
+.menu li.selected
+{
+    background-color:#ccffcc;
 }
 /*-------------------------------------------------------*/
 
@@ -238,10 +277,6 @@ div.top
     background: #A7ED9E;
     padding: 5px;
 }
-.email:hover
-{
-    cursor: default;
-}
 /*-------------------------------------------------------*/
 
 /* Body Section */
@@ -327,22 +362,19 @@ div.footer .copyright
     -ie-box-shadow:  0 1px 7px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1);
 }
-.da-thumbs li:hover
-{
-    background: #ccffff;
-}
 .cat-name
 { 
+    text-align:center;
+    vertical-align: middle;
+    display: table-cell;
     height: 90px;
     width: 135px;
-    vertical-align: bottom;
-    display: table-cell;
-    text-shadow: 0 1px 7px rgba(0, 0, 0, 2), 0 0 40px rgba(0, 0, 0, 0.1);
 }
-.cat-name p
+.cat-title
 {
     margin-bottom: 5px;
-    color:#FFF;
+    margin-top: -90px;
+    height: 90px;
 }
 /*-------------------------------------------------------*/
 
@@ -395,37 +427,58 @@ div.footer .copyright
 /*-------------------------------------------------------*/
 .ad-image-box
 {
-    -webkit-box-shadow: 0px 0px 5px green;
-    -moz-box-shadow: 0px 0px 5px green;
-    box-shadow: 0px 0px 5px green;
+    
 }
 .ad-image
 {
-    height: 365px;
     width: 590px;
     padding: 5px;
     text-align:center;
-    vertical-align: middle;
     display: table-cell;
+    
+    -webkit-box-shadow: 0px 0px 5px silver;
+    -moz-box-shadow: 0px 0px 5px silver;
+    box-shadow: 0px 0px 5px gray;
 }
 .ad-thumb-box
 {
-    height: 105px;
+    margin: 10px 0;
+    border-top: 1px #CCC dotted;
+    border-bottom: 1px #CCC dotted;
+    height: 100px;
 }
 .ad-thumb li
 {
+    
     border: 1px #CCC solid;
     float: left;
     background: #FFF;
     height: 75px;
     width: 120px;
     padding: 2px;
-    margin:12px;
+    margin:10px 12px 10px 0;  
+}
+.mini-img
+{
+    text-align:center;
+    vertical-align: middle;
+    display: table-cell;
+    height: 75px;
+    width: 120px;
 }
 .ad-thumb li:hover
 {
     padding: 5px;
-    margin:9px;
+    margin:7px 9px 7px -3px;
+}
+.ad-thumb li:last-child
+{
+    margin:10px 0 10px 0;
+}
+.ad-thumb li:last-child:hover
+{
+    padding: 5px;
+    margin:7px 0 7px -3px;
 }
 /*-------------------------------------------------------*/
 
@@ -452,9 +505,35 @@ div.footer .copyright
     -webkit-transition: height 0.3s;
     -moz-transition: height 0.3s;
 }
-.title-label
+#title-label
 {
     vertical-align: top;
     padding-top: 15px
 }
+.label
+{
+    text-align: right;
+    padding-right: 10px;
+}
 /*-------------------------------------------------------*/
+
+/*Signin box*/
+/*-------------------------------------------------------*/
+.signin-box
+{
+    padding: 30px;
+    border: 1px #cccccc dashed;
+    float: left;
+}
+/*-------------------------------------------------------*/
+
+.name
+{
+    background-color: #85DD7C;
+    display:block;
+    line-height:16px;
+    margin:0;
+    padding:10px;
+    text-decoration:initial;
+    margin-bottom: 10px;
+}

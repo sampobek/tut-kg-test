@@ -6,12 +6,12 @@
 
     <ul id="da-thumbs" class="da-thumbs">
         <?php if(isset($this->cat_list))foreach($this->cat_list as $value): ?>
-            <a href="<?php echo $this->baseUrl().'/ad/list?category='.$value["id"]; ?>">
+            <a href="<?php echo $this->baseUrl().'/ads/list?category='.$value["id"]; ?>">
                 <li>
                     <div class="cat-name">
-                        <span><p><?php echo $value["name"]; ?></p></span>
-                        <!-- <img src="<?php //echo $this->baseUrl(); ?>/images/img_mini_4.jpg"/> -->
+                         <img src="<?php echo $this->baseUrl(); ?>/images/thumb.jpg"/> 
                     </div>
+                    <p class="cat-title"><?php echo $value["name"]; ?></p>
                 </li>
             </a>
         <?php endforeach; ?>

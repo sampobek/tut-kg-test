@@ -24,6 +24,7 @@ class Application_Form_New extends Zend_Form
                  ->setRequired(true)
                  ->setAttrib("onchange", "getcategory(); return false;");
          $getcategory = new Application_Model_Category();
+         $category->addMultiOption("-1","Выберите категорию");
          $cat_list = $getcategory->getCategories(0);
          foreach($cat_list as $value)
          {

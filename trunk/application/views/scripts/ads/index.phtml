@@ -1,0 +1,37 @@
+<h3><?php echo $this->ad->title; ?></h3>
+<div class="ad-thumb-box">
+    <ul class="ad-thumb">
+        <?php for($i=1;$i<7;$i++): ?>
+        <li>
+            <a href="./images/img_<?php echo $i; ?>.jpg" onclick="galery(this.href); return false;">
+                <div class="mini-img">
+                    <img src="./images/img_mini_<?php echo $i; ?>.jpg"/>
+                </div>
+            </a>
+        </li>
+        <?php endfor; ?>
+    </ul>
+</div>
+<div class="main-section">
+    <div class="ad-image-box">
+        <div class="ad-image">
+            <img src="./images/img_1.jpg"/>
+        </div>
+    </div>
+    <div class="description" style="margin-top: 20px">
+        <p><?php echo $this->ad->description; ?></p>
+    </div>
+</div>
+<div class="right-section">
+    <p class="name"><?php echo $this->ad->name; ?></p>
+    <p class="name"><?php echo $this->ad->phone; ?></p>
+    
+    <a href="<?php echo $this->baseUrl(); ?>/messages/new?id=<?php echo $this->ad->id; ?>">
+        <input type="submit" value="Написать автору" style="width: 200px;">
+    </a>
+</div>
+<script type="text/javascript">
+    function galery(url){
+        $(".ad-image").html("<img src='"+url+"'/>");
+    }
+</script>

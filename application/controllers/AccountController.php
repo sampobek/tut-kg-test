@@ -35,7 +35,7 @@ class AccountController extends Zend_Controller_Action
                 {
                     if($password == $password_confirm)
                     {
-                        $signup_date = date("Y-m-d H:i:s");
+                        $signup_date = date("YmdHis");
              
                         $data = array(
                             'email' => $email,
@@ -139,7 +139,7 @@ class AccountController extends Zend_Controller_Action
                     $user = new Application_Model_Users();
                     $user_id = $user->checkData("email", $username);
                     $data = array(
-                        "signin_date" => date("Y-m-d H:i:s"),
+                        "signin_date" => date("YmdHis"),
                         "ip" => $_SERVER['REMOTE_ADDR']);
                     $user->updateUser($user_id, $data);
                 
@@ -176,7 +176,80 @@ class AccountController extends Zend_Controller_Action
 
     public function settingsAction()
     {
-        $this->view->headTitle("Настройки");
+        $this->view->headTitle("Настройки аккаунта");
+        
+        $my_id = Zend_Auth::getInstance()->getIdentity()->id;
+        
+        $emailform = new Application_Form_Email();
+        $emailform->submit->setLabel("Сохранить");
+        $this->view->email = $emailform;
+        
+        $passwordform = new Application_Form_Password();
+        $passwordform->submit->setLabel("Сохранить");
+        $this->view->password = $passwordform;
+        
+        if($this->getRequest()->isPost())
+        {
+            $formData = $this->getRequest()->getPost();
+            if($emailform->isValid($formData))
+            {
+                $email = $emailform->getValue('email');
+                
+                $email_validate = new Zend_Validate_EmailAddress();
+                if($email_validate->isValid($email))
+                {
+                    $data = array(
+                            'email' => $email
+                        );
+                        $user = new Application_Model_Users();
+                        $user_id = $user->updateUser($my_id,$data);
+                        if($user_id)
+                        {
+                            $this->_helper->redirector('signin', 'account');
+                        }
+                        else
+                        {
+                            echo "Такой пользователь существует";
+                        }
+                }
+                else
+                {
+                    $this->view->email_error = "Неправильный email";
+                }
+            }
+            else if($passwordform->isValid($formData))
+            {
+                $password = $passwordform->getValue('password');
+                $password_confirm = $passwordform->getValue('password_confirm');
+                
+                if($password == $password_confirm)
+                    {
+                        $data = array(
+                            'password' => md5($password)
+                        );
+                        $user = new Application_Model_Users();
+                        $user_id = $user->updateUser($my_id,$data);
+                        if($user_id)
+                        {
+                            $this->_helper->redirector('signin', 'account');
+                        }
+                        else
+                        {
+                            echo "Такой пользователь существует";
+                        }
+                    }
+                    else
+                    {
+                        $passwordform->password->setValue($password);
+                        $this->view->pass_error = "Пароли не совпадают";
+                    }
+            }
+            else
+            {
+                $emailform->populate($formData);
+                $passwordform->populate($formData);
+            }
+        }
     }
 
 }

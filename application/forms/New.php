@@ -14,7 +14,8 @@ class Application_Form_New extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Заголовок");
          
          $category = new Zend_Form_Element_Select('category');
          $category->removeDecorator('Label')
@@ -53,7 +54,8 @@ class Application_Form_New extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Описание");
          
          $name = new Zend_Form_Element_Text('name');
          $name->removeDecorator('Label')
@@ -62,7 +64,8 @@ class Application_Form_New extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Имя");
          
          $phone = new Zend_Form_Element_Text('phone');
          $phone->removeDecorator('Label')
@@ -71,7 +74,8 @@ class Application_Form_New extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Номер телефона");
          
          $email = new Zend_Form_Element_Text('email');
          $email->removeDecorator('Label')
@@ -80,7 +84,8 @@ class Application_Form_New extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Электронная почта");
          
          $submit = new Zend_Form_Element_Submit("submit");
          $submit->removeDecorator('Label')

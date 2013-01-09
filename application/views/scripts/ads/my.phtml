@@ -1,3 +1,12 @@
-<div id="view-content">
-	<p>View script for controller <b>Ads</b> and script/action name <b>my</b></p>
+<?php if(isset($this->adlist))foreach($this->adlist as $value): ?>
+<div  <?php if(isset($this->id)&&$value["email"]==$this->id): ?> style="border-left: 1px solid #ccc;" <?php endif; ?>>
+        <div class="myads">
+            <a href="<?php echo $this->baseUrl(); ?>/ads?id=<?php echo $value["id"]; ?>">
+                <strong><?php echo $value["title"]; ?></strong>
+            </a>
+            <a href="<?php echo $this->baseUrl(); ?>/ads?id=<?php echo $value["id"]; ?>&action=edit">Редактировать</a>
+            <a href="<?php echo $this->baseUrl(); ?>/ads?id=<?php echo $value["id"]; ?>&action=deactive">Деактивировать</a>
+            <a href="<?php echo $this->baseUrl(); ?>/ads?id=<?php echo $value["id"]; ?>&action=delete">Удалить</a>
+        </div>
 </div>
+<?php endforeach; ?>

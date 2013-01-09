@@ -10,6 +10,7 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="addad"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Ads">
@@ -40,6 +41,8 @@
         <formFile formName="Signup"/>
         <formFile formName="Signin"/>
         <formFile formName="Message"/>
+        <formFile formName="Email"/>
+        <formFile formName="Password"/>
       </formsDirectory>
       <layoutsDirectory/>
       <modelsDirectory>
@@ -47,6 +50,8 @@
         <modelFile modelName="Category"/>
         <modelFile modelName="Ads"/>
         <modelFile modelName="Messages"/>
+        <modelFile modelName="Additional"/>
+        <modelFile modelName="Search"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="admin">
@@ -137,6 +142,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Messages">
             <viewScriptFile forActionName="new"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="addad"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -24,10 +24,11 @@ class AdsController extends Zend_Controller_Action
     public function newAction()
     {
         $this->view->headTitle("Новое объявление");
+        $functions = new Application_Model_Additional();
         
         $new_ad = new Application_Form_New();
         $new_ad->submit->setLabel("Опубликовать");
-        if(Zend_Auth::getInstance()->hasIdentity())
+        if($functions->id())
         {
             $new_ad->email->setValue(Zend_Auth::getInstance()->getIdentity()->email);
         }        
@@ -79,9 +80,11 @@ class AdsController extends Zend_Controller_Action
 
     public function listAction()
     {
-        if(Zend_Auth::getInstance()->hasIdentity())
+        $functions = new Application_Model_Additional();
+        
+        if($functions->id())
         {
-            $this->view->id = Zend_Auth::getInstance()->getIdentity()->id;
+            $this->view->id = $functions->id();
         } 
         
         $category = $this->_request->getParam("category");
@@ -102,6 +105,11 @@ class AdsController extends Zend_Controller_Action
             $ads = new Application_Model_Ads();
             $adlist = $ads->getAds($category);
             $this->view->adlist = $adlist;
+        }
+        else
+        {
+            $ads = new Application_Model_Ads();
+            $this->view->adlist = $ads->getAll();
         }
         
         
@@ -130,7 +138,12 @@ class AdsController extends Zend_Controller_Action
 
     public function myAction()
     {
+        $id = Zend_Auth::getInstance()->getIdentity()->id;
         $this->view->headTitle("Мои объявления");
+        
+        $list  = new Application_Model_Ads();
+        $meslist = $list->getAdByUser($id);
+        $this->view->adlist = $meslist;
     }
 
 

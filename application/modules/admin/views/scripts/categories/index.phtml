@@ -1,6 +1,38 @@
 <?php echo $this->render("menu.phtml"); ?>
-<div>
+<div style="float: left;">
+    <ul>
     <?php foreach($this->cat as $value): ?>
-    <p><?php echo $value["name"]; ?></p>
+    <li style="margin:5px">
+        <a href="<?php echo $this->baseUrl(); ?>/admin/categories?category=<?php echo $value["id"]; ?>">
+        <?php echo $value["name"]; ?>
+        </a>
+    </li>
     <?php endforeach; ?>
+    </ul>
 </div>
+<?php if(isset($this->subcat)): ?>
+<div  style="float: left;">
+    <ul>
+    <?php foreach($this->subcat as $value): ?>
+    <li style="margin:5px">
+        <a href="<?php echo $this->baseUrl(); ?>/admin/categories?category=<?php echo $value["parent"]; ?>&subcategory=<?php echo $value["id"]; ?>">
+        <?php echo $value["name"]; ?>
+        </a>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
+<?php if(isset($this->subsubcat)): ?>
+<div  style="float: left;">
+    <ul>
+    <?php foreach($this->subsubcat as $value): ?>
+    <li style="margin:5px">
+        <p>
+        <?php echo $value["name"]; ?>
+        </p>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

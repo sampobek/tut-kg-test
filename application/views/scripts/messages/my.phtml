@@ -1,6 +1,32 @@
-<?php foreach($this->meslist as $value): ?>
-<div style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
-<p><?php echo $value["message"]; ?></p>
-<b><?php echo $value["date"]; ?></b>
+<?php $functions = new Application_Model_Additional(); ?>
+<div style="margin-bottom: 20px;">
+    <a href="<?php echo $this->baseUrl(); ?>/messages">Сообщения</a> |
+    <a href="<?php echo $this->baseUrl(); ?>/messages/my">Мои Сообщения</a>
 </div>
+<?php if(isset($this->message_list)&&$this->message_list!=""): ?>
+<?php foreach($this->message_list as $value): ?>
+<div class="message" <?php if($this->myid == $value["from"]): ?> style="float: right; background-color: #ccffcc;" <?php endif; ?>>
+            <p><?php echo $value["message"]; ?></p>
+            <b><?php echo $functions->Date($value["date"]); ?></b>
+        </div>
 <?php endforeach; ?>
+<form id="new" enctype="application/x-www-form-urlencoded" action="" method="post">
+    <table style="margin-top: 20px;float:right">
+        <tr><td><?php echo $this->form->email; ?></td></tr>
+        <tr><td><?php echo $this->form->description; ?></td></tr>
+        <tr><td><?php echo $this->form->submit; ?></td></tr>
+    </table>
+    </form>
+<?php else: ?>
+<table>
+<?php foreach($this->messages as $value): ?>
+<tr>
+    <td class="message_title">
+        <a href="<?php echo $this->baseUrl(); ?>/messages/my?id=<?php echo $value["ad_id"]; ?>">
+        <?php echo $value["title"]; ?>
+        </a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
+<?php endif; ?>

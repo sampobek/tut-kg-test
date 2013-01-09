@@ -1,4 +1,4 @@
-<?php echo $this->render("menu.phtml"); ?>
+<?php echo $this->render("menu.phtml"); $functions = new Application_Model_Additional();?>
 <div class="users">
     <table width="100%" border="2" class="user-list">
         <tr style="color:#22b1e5">
@@ -10,8 +10,8 @@
     <?php foreach($this->get_users as $value): ?>
         <tr>
             <td><?php echo $value["email"]; ?></td>
-            <td><?php echo $value["signup_date"]; ?></td>
-            <td><?php echo $value["signin_date"]; ?></td>
+            <td><b><?php echo $functions->Date($value["signup_date"]); ?></b></td>
+            <td><b><?php echo $functions->Date($value["signin_date"]); ?></b></td>
             <td><?php echo $value["ip"]; ?></td>
         </tr>
     <?php endforeach; ?>

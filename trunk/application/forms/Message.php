@@ -14,7 +14,8 @@ class Application_Form_Message extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Электронная почта");
          
          $description = new Zend_Form_Element_Textarea('description');
          $description->removeDecorator('Label')
@@ -23,7 +24,8 @@ class Application_Form_Message extends Zend_Form
                  ->removeDecorator('Description')
                  ->setRequired(true)
                  ->addFilter('StripTags')
-                 ->addFilter('StringTrim');
+                 ->addFilter('StringTrim')
+                 ->setAttrib("placeholder", "Сообщение");
          
          $submit = new Zend_Form_Element_Submit("submit");
          $submit->removeDecorator('Label')

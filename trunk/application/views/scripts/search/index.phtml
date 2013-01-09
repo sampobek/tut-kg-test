@@ -1,3 +1,8 @@
-<div id="view-content">
-	<p>View script for controller <b>Search</b> and script/action name <b>index</b></p>
-</div>
+<form enctype="multipart/form-data" method="GET" action="<?php echo $this->baseUrl(); ?>/search" style="margin-bottom: 10px;">
+   <input type="text" name="q" id="main-search" value="<?php echo $this->q; ?>" placeholder="Поиск объявлений..." autocomplete="off"/>
+   <input type="submit" class="search-button" value="Поиск"/>
+</form>
+
+<?php if(isset($this->ads))foreach ($this->ads as $value): ?>
+<li><?php echo $value["title"]; ?></li>
+<?php endforeach; ?>

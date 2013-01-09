@@ -1,39 +1,24 @@
 <div  style="max-width: 560px;" class="main-section">
 <form id="new" enctype="application/x-www-form-urlencoded" action="" method="post">
-    <table>
-        <tr>
-            <td></td><td><h3 style="margin-bottom: 10px;"><?php echo $this->ad->title; ?></h3></td>
-        </tr>
-        <tr>
-            <td></td><td><p id="desc" style="display: none; width:860px;"><?php echo $this->ad->description; ?></p></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <a href="#" style="color:rgb(34, 177, 229)" onclick="show(); return false;" id="show">Показать объявление полностью</a>
-                <a href="#" style="display: none; color:#85DD7C" onclick="hide(); return false;" id="hide">Свернуть объявление</a>
-            </td>
-        </tr>
-        <tr>
-            <td class="label">email</td><td><?php echo $this->form->email; ?></td>
-        </tr>
-        <tr>
-            <td class="label" id="title-label">Сообщение</td><td><?php echo $this->form->description; ?></td>
-        </tr>
-        <tr>
-            <td class="label"></td><td><?php echo $this->form->submit; ?></td>
-        </tr>
+    <h3 style="margin-bottom: 10px;"><?php echo $this->ad->title; ?></h3>
+       <p class="description" id="desc" style="display: none;"><?php echo $this->ad->description; ?></p>
+       <a href="#" style="color:rgb(34, 177, 229)" onclick="show(); return false;" id="show">Показать объявление полностью</a>
+       <a href="#" style="display: none; color:#85DD7C" onclick="hide(); return false;" id="hide">Свернуть объявление</a>
+   <table>
+        <tr><td><?php echo $this->form->email; ?></td></tr>
+        <tr><td><?php echo $this->form->description; ?></td></tr>
+        <tr><td><?php echo $this->form->submit; ?></td></tr>
     </table>
 </form>
     </div>
 <script type="text/javascript">
     function show(){
-            $("#desc").show(500);
+            $("#desc").slideDown(500);
             $("#show").hide();
             $("#hide").show();
     }
     function hide(){
-            $("#desc").hide(500);
+            $("#desc").slideUp(500);
             $("#show").show();
             $("#hide").hide();
     }

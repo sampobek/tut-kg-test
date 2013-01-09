@@ -13,7 +13,7 @@ class Application_Model_Users extends Zend_Db_Table_Abstract
         }
         else
         {
-            return $check["id"];
+            return $check;
         }
     }
     public function updateUser($id, $data = array())

@@ -2,12 +2,16 @@
 /*-------------------------------------------------------*/
 body 
 {
-    background: #ffffff;
+    background:  #ffffff ;
     margin: 0px;
     padding: 0px;
     font: .9em Tahoma, "Trebuchet MS", Tahoma, sans-serif;
     color: #566472;
 }
+a{
+  color:#22B1E5;
+}
+
 /*-------------------------------------------------------*/
 
 /* Wrap */
@@ -125,16 +129,6 @@ input[type="submit"]:hover
     background-image: linear-gradient(90deg , rgb(138,211,129) 0%, rgb(204,237,200) 100%);
 }
 /*-------------------------------------------------------*/
-
-/* Label */
-/*-------------------------------------------------------*/
-.label
-{
-    text-align: right;
-    padding-right: 10px;
-}
-/*-------------------------------------------------------*/
-
 
 /* Menu styles	 */
 /*-------------------------------------------------------*/
@@ -505,11 +499,6 @@ div.footer .copyright
     -webkit-transition: height 0.3s;
     -moz-transition: height 0.3s;
 }
-#title-label
-{
-    vertical-align: top;
-    padding-top: 15px
-}
 .label
 {
     text-align: right;
@@ -536,4 +525,24 @@ div.footer .copyright
     padding:10px;
     text-decoration:initial;
     margin-bottom: 10px;
+}
+.message_title{
+    padding: 10px;
+}
+.message_title:hover{
+    background-color: #ccffff;
+}
+.message{
+    width:600px;
+    border: 1px solid #ccc;
+    margin-top:10px;
+    padding: 10px;
+    float: left;
+}
+.myads
+{
+    margin: 10px;
+}
+.myads:href{
+    color: #ccffff;
 }
